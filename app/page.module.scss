@@ -1,3 +1,9 @@
+@import '@/styles/variables';
+
 .main {
-    background: red;
+    background: initial;
+    width     : 100%;
+    height    : 100%;
+    max-width : 1600px;
+    margin    : 0 auto;
 }
