@@ -1,6 +1,8 @@
+import styles from './page.module.scss'
+
 export default function Home() {
   return (
-    <main>
+    <main className={styles.main}>
         Hiii
     </main>
   )
