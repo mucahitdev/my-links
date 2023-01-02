@@ -1,9 +1,5 @@
-import styles from './page.module.scss'
+import HomeContainer from '@/containers/home-container'
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-        Hiii
-    </main>
-  )
+  return <HomeContainer />
 }

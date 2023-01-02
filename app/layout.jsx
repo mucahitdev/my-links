@@ -2,9 +2,9 @@ import '@/styles/reset.css'
 import '@/styles/globals.scss'
 
 import { Quicksand } from '@next/font/google'
-const quicksand = Quicksand({ 
-  subsets: ['latin'] ,
-  weights: [400, 700]
+const quicksand = Quicksand({
+  weights: [400, 500, 700],
+  subsets: ['latin-ext', 'latin'],
 })
 
 export default function RootLayout({ children }) {
