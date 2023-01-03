@@ -1,23 +1,18 @@
-'use client'
-import React from 'react'
 import styles from './home.module.scss'
-import { useSession, signIn, signOut } from 'next-auth/react'
 
-export default function HomeContainer() {
-  const { data: session } = useSession()
-  console.log(session)
+export default function HomeContainer({ session }) {
+  console.log('user ---->', session)
+  const user = session?.user;
   return (
     <main className={styles.main}>
       {
-        session ? (
+        user ? (
           <div>
-            <h1>Hoşgeldin {session.user.name}</h1>
-            <button onClick={() => signOut()}>Çıkış yap</button>
+            <h1>Hoşgeldin {user.name}</h1>
           </div>
         ) : (
           <div>
             <h1>Hoşgeldin misafir</h1>
-            <button onClick={() => signIn('google')}>Google ile giriş yap</button>
           </div>
         )
       }

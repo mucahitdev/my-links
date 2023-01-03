@@ -1,8 +1,10 @@
 import '@/styles/reset.css'
 import '@/styles/globals.scss'
 
-import ProvidersWrapper from './ProvidersWrapper'
+import { getSession } from '@/lib/auth'
 import { Quicksand } from '@next/font/google'
+
+import Header from '@/components/header'
 
 const quicksand = Quicksand({
   weights: [400, 500, 700],
@@ -10,13 +12,13 @@ const quicksand = Quicksand({
 })
 
 export default async function RootLayout({ children }) {
+  const session = await getSession()
   return (
     <html lang="tr" className={quicksand.className}>
       <head />
       <body>
-        <ProvidersWrapper >
-          {children}
-        </ProvidersWrapper>
+        <Header session={session} />
+        {children}
       </body>
     </html>
   )
