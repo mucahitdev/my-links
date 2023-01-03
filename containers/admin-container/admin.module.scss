@@ -1,0 +1,11 @@
+.main {
+    background     : initial;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    width          : 100%;
+    height         : calc(100% - 60px);
+    max-width      : 1600px;
+    margin         : 0 auto;
+    background     : forestgreen;
+}
