@@ -28,22 +28,22 @@ export const authOptions = {
     // pages: {
     //   signIn: "/login",
     // },
-    // callbacks: {
-    //   async session({ session, token }) {
-    //     if (token) {
-    //       session.user.bio = token.bio;
-    //     }
+    callbacks: {
+        async session({ session, token }) {
+            if (token) {
+                session.user.bio = token.sub;
+            }
 
-    //     return session;
-    //   },
-    //   async jwt({ token, account, profile }) {
-    //     if (account) {
-    //       token.bio = profile.bio;
-    //     }
+            return session;
+        },
+        async jwt({ token, account, profile }) {
+            if (account) {
+                token.bio = profile.bio;
+            }
 
-    //     return token;
-    //   },
-    // },
+            return token;
+        },
+    },
 };
 
 export default NextAuth(authOptions)

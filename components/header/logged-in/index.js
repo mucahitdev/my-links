@@ -10,7 +10,9 @@ export default function LoggedIn({ session }) {
     console.log('--->', session)
     return (
         <div className={styles.loggedIn}>
-            <Button text="Sign Out" event={signOut} />
+            <Button text="Sign Out" event={
+                () => signOut({ callbackUrl: "/" })
+            } />
             <Image
                 src={session.user.image}
                 alt="User Image"
