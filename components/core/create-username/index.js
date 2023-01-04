@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Button from '@/components/theme/button'
 import styles from './create-username.module.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import { useLowerCase } from '@/hooks/useLowerCase';
+import { lowerCase } from '@/hooks/useLowerCase';
 
 import { asyncQueryUserName, asyncCreateUserLink } from '@/redux/user/userSlice'
 
@@ -46,7 +46,7 @@ export default function CreateUserName({ session, setCreateUserNameIsVisible }) 
     }
 
     function handleChange(e) {
-        setHandleChangeUsername(useLowerCase(e.target.value))
+        setHandleChangeUsername(lowerCase(e.target.value))
     }
 
     useEffect(() => {

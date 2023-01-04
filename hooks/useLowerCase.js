@@ -1,4 +1,4 @@
-export const useLowerCase = (str) => {
+export const lowerCase = (str) => {
     const lowerCase = str.trim()
         .split(" ")
         .join("")
