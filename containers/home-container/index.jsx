@@ -1,7 +1,6 @@
 import styles from './home.module.scss'
 
 export default function HomeContainer({ session }) {
-  console.log('user ---->', session)
   const user = session?.user;
   return (
     <main className={styles.main}>

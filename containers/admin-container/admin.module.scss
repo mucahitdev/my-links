@@ -1,6 +1,8 @@
 .main {
     background     : initial;
     display        : flex;
+    flex-direction : column;
+    row-gap        : 20px;
     align-items    : center;
     justify-content: center;
     width          : 100%;
@@ -8,4 +10,11 @@
     max-width      : 1600px;
     margin         : 0 auto;
     background     : forestgreen;
+
+    .input {
+        width    : 100%;
+        max-width: 200px;
+        padding: 6px;
+        font-size: 20px;
+    }
 }
