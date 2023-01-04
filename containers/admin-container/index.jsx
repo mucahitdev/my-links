@@ -1,14 +1,41 @@
-'use client'
-import React from 'react'
+'use client';
+import React, { useState, useEffect } from 'react'
 import styles from './admin.module.scss'
-import { useSelector } from 'react-redux'
+
+import CreateUserName from '@/components/core/create-username';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncGetUser } from '@/redux/user/userSlice'
+
 
 export default function AdminContainer({ session }) {
-
     const { user } = useSelector(state => state.user)
-    console.log('admin redux ---->', user)
-    // console.log('admin user ---->', session)
+    const [createUserNameIsVisible, setCreateUserNameIsVisible] = useState(false)
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(asyncGetUser(session.user.bio))
+    }, [])
+
+    useEffect(() => {
+        if (user?.notUsername) {
+            setCreateUserNameIsVisible(true)
+        } else {
+            setCreateUserNameIsVisible(false)
+        }
+    }, [user])
+
+
+    if (!user) return <div className={styles.main}>Loading...</div>
+
+
     return (
-        <main className={styles.main}>AdminContainer</main>
+        <main className={styles.main}>
+            {
+                createUserNameIsVisible ? <CreateUserName session={session} setCreateUserNameIsVisible={setCreateUserNameIsVisible} />
+                    : <h1>Admin : {user?.username}</h1>
+            }
+        </main>
     )
 }
