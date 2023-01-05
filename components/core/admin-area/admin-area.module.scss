@@ -1,0 +1,25 @@
+.container {
+    width                : 100%;
+    height               : 100%;
+    background           : red;
+    display              : grid;
+    grid-template-columns: 1fr 400px;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        grid-template-rows   : 1fr;
+    }
+
+    .editarea {
+        background: green;
+    }
+
+    .previewarea {
+        background: blue;
+
+        @media (max-width: 1024px) {
+            width : 0;
+            height: 0;
+        }
+    }
+}

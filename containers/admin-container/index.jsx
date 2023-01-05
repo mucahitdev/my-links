@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './admin.module.scss'
 
 import CreateUserName from '@/components/core/create-username';
+import AdminArea from '@/components/core/admin-area';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncGetUser } from '@/redux/user/userSlice'
@@ -34,7 +35,7 @@ export default function AdminContainer({ session }) {
         <main className={styles.main}>
             {
                 createUserNameIsVisible ? <CreateUserName session={session} setCreateUserNameIsVisible={setCreateUserNameIsVisible} />
-                    : <h1>Admin : {user?.username}</h1>
+                    : <AdminArea user={user} />
             }
         </main>
     )
