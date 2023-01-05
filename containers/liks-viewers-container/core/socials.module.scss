@@ -1,0 +1,19 @@
+.container {
+    position     : absolute;
+    bottom       : 0;
+    left         : 0;
+    right        : 0;
+    height       : 90px;
+    background   : rgba(0, 0, 0, 0.527);
+    padding      : 10px;
+    border-radius: 10px 10px 0 0;
+
+    .socials {
+        height         : 100%;
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+        max-width      : 600px;
+        margin         : 0 auto;
+    }
+}
