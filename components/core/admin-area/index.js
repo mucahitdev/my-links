@@ -9,7 +9,7 @@ export default function AdminArea({ user }) {
                 Sol alan
             </div>
             <div className={styles.previewarea}>
-                <PreviewArea />
+                <PreviewArea user={user} />
             </div>
         </div>
     )
