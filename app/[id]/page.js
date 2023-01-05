@@ -1,4 +1,6 @@
 import React from 'react'
+import { notFound } from 'next/navigation';
+
 import LinksViewrsContainer from '@/containers/liks-viewers-container'
 
 const fetchData = async (id) => {
@@ -14,6 +16,10 @@ const fetchData = async (id) => {
 
 export default async function UserLinksViewes({ params }) {
     const data = await fetchData(params.id)
+
+    if (data === false) {
+        return notFound(params)
+    }
     return (
         <LinksViewrsContainer data={data} />
     )
