@@ -1,15 +1,20 @@
 import React from 'react'
+import LinksViewrsContainer from '@/containers/liks-viewers-container'
 
 const fetchData = async (id) => {
-    const res = await fetch(`https://linkstr.vercel.app/api/list/get/${id}`)
+    const res = await fetch(`https://linkstr.vercel.app/api/list/get/${id}`, {
+        next: {
+            revalidate: 10,
+        },
+    })
     const data = await res.json()
     return data
 }
 
+
 export default async function UserLinksViewes({ params }) {
     const data = await fetchData(params.id)
-    console.log(data)
     return (
-        <div> {params.id} </div>
+        <LinksViewrsContainer data={data} />
     )
 }

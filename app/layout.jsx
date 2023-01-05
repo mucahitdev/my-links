@@ -4,7 +4,6 @@ import '@/styles/globals.scss'
 import { getSession } from '@/lib/auth'
 import { Quicksand } from '@next/font/google'
 
-import Header from '@/components/core/header'
 import MainLayoutWrapper from '@/components/core/main-layout-wrapper'
 
 const quicksand = Quicksand({
@@ -19,7 +18,6 @@ export default async function RootLayout({ children }) {
       <head />
       <body>
         <MainLayoutWrapper>
-          <Header session={session} />
           {children}
         </MainLayoutWrapper>
       </body>
