@@ -20,14 +20,14 @@ export default function AdminContainer({ session }) {
     }, [])
 
     useEffect(() => {
-        if (user?.notUsername) {
+        if (user?.notUser) {
             setCreateUserNameIsVisible(true)
         } else {
             setCreateUserNameIsVisible(false)
         }
     }, [user])
 
-
+    console.log(user)
     if (!user) return <div className={styles.main}>Loading...</div>
 
 
@@ -35,7 +35,7 @@ export default function AdminContainer({ session }) {
         <main className={styles.main}>
             {
                 createUserNameIsVisible ? <CreateUserName session={session} setCreateUserNameIsVisible={setCreateUserNameIsVisible} />
-                    : <AdminArea user={user} />
+                    : <AdminArea user={user.data} />
             }
         </main>
     )

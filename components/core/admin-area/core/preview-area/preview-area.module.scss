@@ -1,5 +1,4 @@
 .container {
-    background: yellow;
     height    : 100%;
 
     @media (max-width: 1024px) {
@@ -8,7 +7,6 @@
     }
 
     .preview {
-        background: gray;
         height    : 100%;
         padding   : 10px;
 

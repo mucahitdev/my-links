@@ -1,7 +1,6 @@
 .container {
     width                : 100%;
     height               : 100%;
-    background           : red;
     display              : grid;
     grid-template-columns: 1fr 400px;
 
@@ -10,12 +9,11 @@
         grid-template-rows   : 1fr;
     }
 
-    .editarea {
-        background: green;
-    }
+    // .editarea {
+
+    // }
 
     .previewarea {
-        background: blue;
 
         @media (max-width: 1024px) {
             width : 0;

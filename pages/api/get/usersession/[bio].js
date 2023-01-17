@@ -5,7 +5,6 @@ export default async function handle(req, res) {
 
     const docRef = collection(db, "users")
     const docs = await getDoc(doc(docRef, bio))
-
     if (docs.exists()) {
         const usernames = docs.data().username
 
@@ -14,18 +13,39 @@ export default async function handle(req, res) {
             const docsUser = await getDoc(doc(docRefUser, usernames))
 
             if (docsUser.exists()) {
-                res.status(200).json(docsUser.data())
+                res.status(200).json({
+                    notUser: false,
+                    notUsername: false,
+                    data: docsUser.data(),
+                    message: 'Kullanıcı bilgileri başarıyla alındı',
+                    error: null,
+                })
             }
             else {
-                res.status(200).json('Username daha bulunamadı')
+                res.status(200).json({
+                    notUser: false,
+                    notUsername: false,
+                    data: null,
+                    message: 'Kullanıcı adı almamış',
+                    error: null,
+                })
             }
         } else {
             res.status(200).json({
-                notUsername: true
+                notUser: false,
+                notUsername: true,
+                data: null,
+                message: 'Kullanıcı adı almamış',
+                error: null,
             })
         }
     } else {
-        res.status(200).json('Böyle bir kullanıcı yok')
+        res.status(200).json({
+            notUser: true,
+            notUsername: false,
+            data: null,
+            message: null,
+            error: 'Böyle bir kullanıcı yok'
+        })
     }
-
 }

@@ -16,7 +16,6 @@ const fetchData = async (id) => {
 
 export default async function UserLinksViewes({ params }) {
     const data = await fetchData(params.id)
-
     if (data === false) {
         return notFound(params)
     }
