@@ -14,15 +14,15 @@ import { setDialog, setDialogOpen } from '@/redux/dialog/dialogSlice';
 
 export default function AddDialogs() {
     const { dialog, open } = useSelector((state) => state.dialog);
+    const dispatch = useDispatch();
 
     if (!dialog) return null;
-
-    const dispatch = useDispatch();
 
     const handleClose = () => {
         dispatch(setDialog(null));
         dispatch(setDialogOpen(false));
     };
+
     const placeholderLink = `https://www.${dialog?.name.toLowerCase()}.com/xxxxxxxx`
 
     return (
