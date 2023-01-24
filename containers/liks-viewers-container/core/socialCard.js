@@ -5,21 +5,27 @@ import Link from 'next/link'
 
 export default function SocialCard({ social }) {
     let icon = null
-    switch (social.icon) {
-        case 'twitter':
+    let title = null
+    switch (social.type) {
+        case 2:
             icon = <AiOutlineTwitter className={styles.icon} />
+            title = 'Twitter'
             break
-        case 'instagram':
+        case 1:
             icon = <AiFillInstagram className={styles.icon} />
+            title = 'Instagram'
             break
-        case 'linkedin':
+        case 3:
             icon = <AiFillLinkedin className={styles.icon} />
+            title = 'Linkedin'
             break
-        case 'github':
+        case 4:
             icon = <AiFillGithub className={styles.icon} />
+            title = 'Github'
             break
         default:
             icon = <AiOutlineLink className={styles.icon} />
+            title = 'Link'
             break
     }
 
@@ -30,7 +36,7 @@ export default function SocialCard({ social }) {
                 {icon}
             </Link>
             <div className={styles.title}>
-                {social.title}
+                {title}
             </div>
         </div>
 
