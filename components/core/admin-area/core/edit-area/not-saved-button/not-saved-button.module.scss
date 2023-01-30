@@ -1,0 +1,16 @@
+.container {
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    flex-direction : column;
+    gap            : 1rem;
+
+    // buttons first
+
+    .buttons {
+        display        : flex;
+        align-items    : center;
+        justify-content: center;
+        gap            : 1.5rem;
+    }
+}

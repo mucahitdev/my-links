@@ -11,7 +11,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 import AddDialogs from '@/components/theme/add-dialogs'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setDialog, setDialogOpen } from '@/redux/dialog/dialogSlice';
 
 
@@ -27,6 +27,17 @@ export default function AddButton() {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const { notSaverUserData } = useSelector(state => state.user)
+
+    const actionsFiltered = actions.filter(action => {
+        if (notSaverUserData.socials.length > 0) {
+            if (action.id === 0) return true
+            return !notSaverUserData.socials.some(social => social.type === action.id)
+        } else {
+            return true
+        }
+    })
+
 
     const dispatch = useDispatch()
 
@@ -47,7 +58,7 @@ export default function AddButton() {
                     onOpen={handleOpen}
                     open={open}
                 >
-                    {actions.map((action) => (
+                    {actionsFiltered.map((action) => (
                         <SpeedDialAction
                             key={action.name}
                             icon={action.icon}

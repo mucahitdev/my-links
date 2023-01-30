@@ -10,7 +10,7 @@ import { asyncGetUser } from '@/redux/user/userSlice'
 
 
 export default function AdminContainer({ session }) {
-    const { user } = useSelector(state => state.user)
+    const { notSaverUserData, user } = useSelector(state => state.user)
     const [createUserNameIsVisible, setCreateUserNameIsVisible] = useState(false)
 
     const dispatch = useDispatch();
@@ -35,7 +35,7 @@ export default function AdminContainer({ session }) {
         <main className={styles.main}>
             {
                 createUserNameIsVisible ? <CreateUserName session={session} setCreateUserNameIsVisible={setCreateUserNameIsVisible} />
-                    : <AdminArea user={user} />
+                    : <AdminArea user={notSaverUserData} />
             }
         </main>
     )

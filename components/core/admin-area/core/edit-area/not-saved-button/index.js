@@ -1,31 +1,43 @@
 'use client'
 import React from 'react'
 import { Button } from '@mui/material'
+import styles from './not-saved-button.module.scss'
+
 import { useSelector, useDispatch } from 'react-redux'
-import { asyncUpdateUserData } from '@/redux/user/userSlice'
+import { asyncUpdateUserData, resetSaveData } from '@/redux/user/userSlice'
 
 
 export default function NotSavedButton() {
-    const { user, notSaverUserData } = useSelector(state => state.user)
+    const { user, notSaverUserData, notSaverUserDataLoading } = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     const handleSave = () => {
         dispatch(asyncUpdateUserData({ username: user.username, newData: notSaverUserData }))
     }
 
+    const resetSave = () => {
+        dispatch(resetSaveData())
+    }
+
     if (user === notSaverUserData) return null
     return (
-        <div>
+        <div className={styles.container}>
             <p>Kaydedilmemiş Değişiklikler Var</p>
-            <Button variant="contained" color="error">
-                Çöpe At
-            </Button>
+            <div className={styles.buttons}>
+                <Button variant="contained" color="error"
+                    onClick={resetSave}
+                    disabled={notSaverUserDataLoading}
+                >
+                    {notSaverUserDataLoading ? '. . .' : "Çöpe At"}
+                </Button>
 
-            <Button variant="contained" color="success"
-                onClick={handleSave}
-            >
-                Kaydet
-            </Button>
+                <Button variant="contained" color="success"
+                    onClick={handleSave}
+                    disabled={notSaverUserDataLoading}
+                >
+                    {notSaverUserDataLoading ? '. . .' : "Kaydet"}
+                </Button>
+            </div>
         </div>
     )
 }

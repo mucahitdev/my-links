@@ -17,8 +17,8 @@ const initialState = {
     queryUserNameLoading: 'idle' | 'pending' | 'succeeded',
     queryUserNameError: null,
 
-    socialLoading: false,
-    socialError: null,
+    notSaverUserDataLoading: false,
+    notSaverUserDataError: null,
 };
 
 export const asyncCreateUserLink = createAsyncThunk(
@@ -85,7 +85,10 @@ export const userSlice = createSlice({
         },
         addLink: (state, action) => {
             state.notSaverUserData.links.push(action.payload);
-        }
+        },
+        resetSaveData: (state, action) => {
+            state.notSaverUserData = state.user;
+        },
     },
     extraReducers: {
         [asyncCreateUserLink.pending]: (state, action) => {
@@ -115,6 +118,20 @@ export const userSlice = createSlice({
         [asyncGetUser.fulfilled]: (state, action) => {
             state.user = action.payload;
             state.notSaverUserData = action.payload;
+        },
+        [asyncGetUser.rejected]: (state, action) => {
+            state.user = null;
+            state.notSaverUserData = null;
+        },
+        [asyncUpdateUserData.pending]: (state, action) => {
+            state.notSaverUserDataLoading = true;
+        },
+        [asyncUpdateUserData.fulfilled]: (state, action) => {
+            state.notSaverUserDataLoading = false;
+            state.user = state.notSaverUserData;
+        },
+        [asyncUpdateUserData.rejected]: (state, action) => {
+            state.notSaverUserDataError = action.error.message;
         }
     }
 });
@@ -133,6 +150,7 @@ export const {
     addSocial,
     deleteSocial,
     addLink,
+    resetSaveData,
 } = userSlice.actions;
 
 export default userSlice.reducer;
