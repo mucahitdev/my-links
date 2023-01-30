@@ -9,12 +9,15 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CircularProgress from '@mui/material/CircularProgress';
+import uuid from 'react-uuid';
+
 
 
 import FormControl from '@mui/material/FormControl';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setDialog, setDialogOpen, asyncSaveLink } from '@/redux/dialog/dialogSlice';
+import { setDialog, setDialogOpen } from '@/redux/dialog/dialogSlice';
+import { addSocial, addLink } from '@/redux/user/userSlice';
 
 
 export default function AddDialogs() {
@@ -43,6 +46,8 @@ export default function AddDialogs() {
     const isLink = dialog?.id === 0
 
     const handleClose = () => {
+        setTitle('');
+        setLink('');
         dispatch(setDialog(null));
         dispatch(setDialogOpen(false));
     };
@@ -68,9 +73,19 @@ export default function AddDialogs() {
             title: isLink ? title : null,
             link,
             type: dialog.id,
-            session: user
+            uuid: uuid()
         };
-        dispatch(asyncSaveLink(newLink));
+        let newSocial = {
+            link,
+            type: dialog.id
+        };
+
+        if (!isLink) {
+            dispatch(addSocial(newSocial));
+        } else {
+            dispatch(addLink(newLink));
+        }
+        handleClose();
     };
 
 

@@ -3,6 +3,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 const initialState = {
     user: null,
 
+    notSaverUserData: {
+        socials: [],
+        links: [],
+        session: null,
+        username: null
+    },
+
     createUserLinkLoading: false,
     createUserLinkError: null,
 
@@ -10,7 +17,8 @@ const initialState = {
     queryUserNameLoading: 'idle' | 'pending' | 'succeeded',
     queryUserNameError: null,
 
-
+    socialLoading: false,
+    socialError: null,
 };
 
 export const asyncCreateUserLink = createAsyncThunk(
@@ -47,10 +55,38 @@ export const asyncGetUser = createAsyncThunk(
     }
 )
 
+export const asyncUpdateUserData = createAsyncThunk(
+    "user/updateUserData",
+    async ({ username, newData }) => {
+        const response = await fetch('/api/update/userdata', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                newData
+            })
+        });
+        const data = await response.json();
+        return data;
+    }
+)
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
+    reducers: {
+        addSocial: (state, action) => {
+            state.notSaverUserData.socials.push(action.payload);
+        },
+        deleteSocial: (state, action) => {
+            state.notSaverUserData.socials = state.notSaverUserData.socials.filter(social => social.type !== action.payload);
+        },
+        addLink: (state, action) => {
+            state.notSaverUserData.links.push(action.payload);
+        }
+    },
     extraReducers: {
         [asyncCreateUserLink.pending]: (state, action) => {
             state.createUserLinkLoading = true;
@@ -78,6 +114,7 @@ export const userSlice = createSlice({
         },
         [asyncGetUser.fulfilled]: (state, action) => {
             state.user = action.payload;
+            state.notSaverUserData = action.payload;
         }
     }
 });
@@ -89,5 +126,13 @@ export const selectCreateUserLinkError = (state) => state.user.createUserLinkErr
 export const selectQueryUserNameTaken = (state) => state.user.queryUserNameTaken;
 export const selectQueryUserNameLoading = (state) => state.user.queryUserNameLoading;
 export const selectQueryUserNameError = (state) => state.user.queryUserNameError;
+
+
+
+export const {
+    addSocial,
+    deleteSocial,
+    addLink,
+} = userSlice.actions;
 
 export default userSlice.reducer;

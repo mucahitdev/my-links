@@ -1,23 +1,19 @@
 import React from 'react'
 import AddButton from '@/components/theme/add-button'
 import styles from './edit-area.module.scss'
+import SocialsArea from './socials-area'
+import LinksArea from './links-area'
+import NotSavedButton from './not-saved-button'
 
 export default function EditArea({ user }) {
-    console.log(user)
     return (
         <div className={styles.container}>
-            <h1>Link ve Sosyal medya hesaplarını ekle</h1>
+            <NotSavedButton />
 
-            <div>
-                link eklem
-            </div>
-
-            <div>
-                sosyal medya ekleme alanı
-            </div>
+            <SocialsArea data={user.socials} />
+            <LinksArea data={user.links} />
 
             <AddButton />
-
         </div>
     )
 }
