@@ -6,7 +6,9 @@ export default function SocialsArea({ data }) {
     const socials = data?.map((social, index) => {
         return (
             <div className={styles.social} key={index}>
-                <Social data={social} />
+                <div className={styles.card}>
+                    <Social data={social} />
+                </div>
             </div>
         )
     })
