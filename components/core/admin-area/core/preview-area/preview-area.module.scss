@@ -1,5 +1,5 @@
 .container {
-    height    : 100%;
+    height: 100%;
 
     @media (max-width: 1024px) {
         height: 0;
@@ -7,8 +7,8 @@
     }
 
     .preview {
-        height    : 100%;
-        padding   : 10px;
+        height : 100%;
+        padding: 10px;
 
         @media (max-width: 1024px) {
             display: none;
@@ -30,13 +30,14 @@
         margin    : auto;
         transition: all 0.5s ease-in-out;
         padding   : 10px;
+        display   : none;
 
         @media (min-width: 1024px) {
             display: none;
         }
 
         &.active {
-            top: 2000px;
+            display: block;
         }
 
         .iframe {
@@ -53,8 +54,8 @@
         left         : 50%;
         transform    : translateX(-50%);
         z-index      : 1;
-        width        : 80px;
-        height       : 80px;
+        width        : 60px;
+        height       : 60px;
         background   : #fff;
         border-radius: 50%;
 
