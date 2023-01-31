@@ -49,7 +49,7 @@ export default function AddButton() {
     }
     return (
         <>
-            <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
+            <Box sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}>
                 <SpeedDial
                     ariaLabel="SpeedDial controlled open example"
                     sx={{ position: 'absolute', bottom: 16, right: 16 }}
