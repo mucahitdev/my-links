@@ -29,17 +29,24 @@ export default function AddButton() {
     const handleClose = () => setOpen(false);
     const { notSaverUserData } = useSelector(state => state.user)
 
+    const dispatch = useDispatch()
+
+    if (notSaverUserData?.notUsername) {
+        return <></>
+    }
+
     const actionsFiltered = actions.filter(action => {
-        if (notSaverUserData.socials.length > 0) {
+
+        if (notSaverUserData?.socials.length > 0) {
             if (action.id === 0) return true
             return !notSaverUserData.socials.some(social => social.type === action.id)
         } else {
             return true
         }
+
     })
 
 
-    const dispatch = useDispatch()
 
 
     const handleAction = (e) => {
