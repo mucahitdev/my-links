@@ -86,6 +86,9 @@ export const userSlice = createSlice({
         addLink: (state, action) => {
             state.notSaverUserData.links.push(action.payload);
         },
+        deleteLink: (state, action) => {
+            state.notSaverUserData.links = state.notSaverUserData.links.filter(link => link.uuid !== action.payload);
+        },
         resetSaveData: (state, action) => {
             state.notSaverUserData = state.user;
         },
@@ -151,6 +154,7 @@ export const {
     deleteSocial,
     addLink,
     resetSaveData,
+    deleteLink
 } = userSlice.actions;
 
 export default userSlice.reducer;
