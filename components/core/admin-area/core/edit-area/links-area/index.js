@@ -15,6 +15,7 @@ export default function LinksArea() {
 
     const { notSaverUserData } = useSelector(state => state.user)
 
+    if (!notSaverUserData?.links) return null;
     const handleDelete = (uuid) => {
         dispatch(deleteLink(uuid))
     }
@@ -24,7 +25,7 @@ export default function LinksArea() {
         <div className={styles.container}>
             <h1 className={styles.title}>Links</h1>
             <ul className={styles.links}>
-                {notSaverUserData.links.map(link => (
+                {notSaverUserData?.links.map(link => (
                     <li className={styles.link} key={link.uuid}>
                         {link.title}
                         <Button color='error' startIcon={<DeleteIcon />}
