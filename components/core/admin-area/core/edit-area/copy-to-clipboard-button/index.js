@@ -28,11 +28,10 @@ const CopyToClipboardButton = ({ username }) => {
                 sx={{
                     backgroundColor: 'grey.200',
                     display: 'flex',
-                    width: '100%',
-                    maxWidth: '300px',
                     justifyContent: 'center',
                     alignItems: 'center',
                     borderRadius: '10px',
+                    padding: '0 10px',
                 }}
             >
                 <p> {link} </p>

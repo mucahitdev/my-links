@@ -7,8 +7,6 @@ import NotSavedButton from './not-saved-button'
 import CopyToClipboardButton from './copy-to-clipboard-button'
 
 export default function EditArea({ user }) {
-
-    console.log(user)
     return (
         <div className={styles.container}>
             <CopyToClipboardButton username={user.username} />
